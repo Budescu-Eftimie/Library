@@ -6,6 +6,7 @@
 
 body {
   background-color: rgba(148, 91, 110, 0.753);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h2 {
@@ -31,6 +32,7 @@ h2 {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  text-align: center;
 }
 
 .wrapper .field {
@@ -49,4 +51,53 @@ input[type="submit"] {
 
 .alert {
   color: red;
+}
+
+ul {
+  list-style: none;
+}
+
+.fa-trash-alt {
+  color: red;
+}
+
+.fa-check {
+  color: rgb(30, 109, 30);
+}
+.fa-times {
+  color: rgb(146, 17, 17);
+}
+span {
+  font-size: 30px;
+}
+
+.book-collection {
+  min-width: 1500px;
+  max-height: 150px;
+  overflow-y: scroll;
+}
+
+table {
+  width: 100%;
+  border: 1px solid;
+}
+.headers {
+  text-align: center;
+  font-size: 20px;
+}
+
+.book-info {
+  text-align: center;
+}
+
+th.delete,
+th.is-done {
+  width: 5%;
+}
+th.title {
+  width: 40%;
+}
+
+th.pages {
+  width: 10%;
 }

@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script src="index.js" defer="true"></script>
+    <script
+      src="https://kit.fontawesome.com/4ff61b9a11.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Library</title>
   </head>
   <body>
     <button class="add-book">Add book</button>
     <div class="new-book"></div>
-    <form class="wrapper hidden" >
-      <h2>Add a new book!</h2>
-
+    <form class="wrapper hidden">
+      <h2 class="title-card">Add a new book!</h2>
       <input
         class="field"
         type="text"
@@ -48,5 +50,21 @@
       </div>
       <input type="submit" value="Submit" />
     </form>
+    <div class="book-collection scrollit">
+      <table>
+        <thead class="headers">
+          <tr>
+            <th class="delete">Remove</th>
+            <th class="title">Book-Title</th>
+            <th class="author">Author</th>
+            <th class="pages">Pages</th>
+            <th class="is-done">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table-body"></tbody>
+      </table>
+    </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
