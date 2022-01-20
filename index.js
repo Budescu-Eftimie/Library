@@ -1,20 +1,29 @@
 "use strict";
+let library = [];
 
 const addBookbtn = document.querySelector(".add-book");
 const form = document.getElementsByClassName("wrapper")[0];
 const table = document.getElementsByClassName("table-body")[0];
 
-
 table.onclick = (e) => {
-      const element=e.target
-  if (element.classList[0]=='toggle') {
-        if (element.classList[2]=='fa-check'){
-              element.className='toggle fas fa-times'
-        }else (element.className='toggle fas fa-check')
+  const element = e.target;
+  console.log(element.className);
+  if (element.classList[0] == "toggle") {
+    if (element.classList[2] == "fa-check") {
+      element.className = "toggle fas fa-times";
+    } else element.className = "toggle fas fa-check";
+  }
+  if (element.className == "far fa-trash-alt") {
+    const bookTitle = element.nextElementSibling.innerText;
+    removeBook(bookTitle);
   }
 };
 
-const library = [];
+function removeBook(bookTitle) {
+  console.log(bookTitle, library);
+  library = library.filter((book) => book.title != bookTitle);
+  renderBooks();
+}
 
 addBookbtn.onclick = () => {
   form.classList.remove("hidden");
@@ -68,11 +77,11 @@ function Book(title, author, pages, isRead) {
 }
 const renderBooks = function () {
   const bookCollection = document.getElementsByClassName("table-body")[0];
-  const bookInfo = document.createElement("tr");
-  bookInfo.className = "book-info";
-  bookCollection.appendChild(bookInfo);
-
+  bookCollection.innerHTML = "";
   library.forEach((book) => {
+    const bookInfo = document.createElement("tr");
+    bookInfo.className = "book-info";
+    bookCollection.appendChild(bookInfo);
     const domTitle = document.createElement("td");
     domTitle.innerText = `${book.title}`;
 
