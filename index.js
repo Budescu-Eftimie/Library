@@ -3,6 +3,7 @@ let library = [];
 
 const addBookbtn = document.querySelector(".add-book");
 const form = document.getElementsByClassName("wrapper")[0];
+form.style.display='none'
 const table = document.getElementsByClassName("table-body")[0];
 
 table.onclick = (e) => {
@@ -26,7 +27,7 @@ function removeBook(bookTitle) {
 }
 
 addBookbtn.onclick = () => {
-  form.classList.remove("hidden");
+  form.style.display = "block";
 };
 
 form.onsubmit = (event) => {
@@ -45,8 +46,8 @@ const makeBook = () => {
   if (isBookInLibrary == false) {
     library.push(book);
     renderBooks();
-    form.classList.add("hidden");
     form.reset();
+    form.style.display = "none";
   } else {
     const alertMessage = document.getElementsByClassName("title-card")[0];
     alertMessage.innerText = "Book already in library";
