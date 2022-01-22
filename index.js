@@ -1,14 +1,22 @@
 "use strict";
-let library = [];
+
+let library = [
+  { title: "AnalyserNo", author: "ggs", pages: 25, isRead: false },
+  { title: "AnaalyserNo", author: "ggs", pages: 25, isRead: false },
+  { title: "Analyso", author: "ggs", pages: 25, isRead: false },
+];
+
+//let library = [];
 
 const addBookbtn = document.querySelector(".add-book");
-const form = document.getElementsByClassName("wrapper")[0];
-form.style.display='none'
+const form = document.getElementsByClassName("form-wrapper")[0];
+form.style.display = "none";
 const table = document.getElementsByClassName("table-body")[0];
+
+//
 
 table.onclick = (e) => {
   const element = e.target;
-  console.log(element.className);
   if (element.classList[0] == "toggle") {
     if (element.classList[2] == "fa-check") {
       element.className = "toggle fas fa-times";
@@ -26,6 +34,8 @@ function removeBook(bookTitle) {
   renderBooks();
 }
 
+//
+
 addBookbtn.onclick = () => {
   form.style.display = "block";
 };
@@ -33,7 +43,6 @@ addBookbtn.onclick = () => {
 form.onsubmit = (event) => {
   event.preventDefault();
   makeBook();
-  //renderBookss();
 };
 
 const makeBook = () => {
@@ -42,33 +51,39 @@ const makeBook = () => {
   book.author = document.getElementById("author").value;
   book.pages = document.getElementById("pages").value;
   book.isRead = document.getElementById("done").checked;
-  const isBookInLibrary = bookCheck(book);
-  if (isBookInLibrary == false) {
-    library.push(book);
-    renderBooks();
+  const bookInLibrary = checkIfBookInLibrary(book);
+  takeAction(book, bookInLibrary);
+};
+
+//
+
+const takeAction = (book, bolean) => {
+  const titleCardH2 = document.getElementsByClassName("title-card")[0];
+  if (bolean == true) {
+    titleCardH2.innerText = "Book already in library";
+    titleCardH2.style.color = "red";
+  } else {
     form.reset();
     form.style.display = "none";
-  } else {
-    const alertMessage = document.getElementsByClassName("title-card")[0];
-    alertMessage.innerText = "Book already in library";
-    alertMessage.style.color = "red";
+    titleCardH2.innerText = "Add new Book";
+    titleCardH2.style.color = "black";
+    library.push(book);
+    renderBooks();
   }
 };
 
-const bookCheck = (book) => {
-  if (library.length > 0) {
-    for (let index = 0; index < library.length; index++) {
-      const element = library[index].title;
-      if (book.title === element) {
-        return true;
-      } else {
-        return false;
-      }
+const checkIfBookInLibrary = (book) => {
+  if (library.length < 1) return false;
+  for (let index = 0; index < library.length; index++) {
+    const element = library[index].title;
+    if (book.title == element) {
+      return true;
+    } else {
+      return false;
     }
-  } else {
-    return false;
   }
 };
+//
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -78,30 +93,37 @@ function Book(title, author, pages, isRead) {
 }
 const renderBooks = function () {
   const bookCollection = document.getElementsByClassName("table-body")[0];
-  bookCollection.innerHTML = "";
+  bookCollection.textContent = "";
   library.forEach((book) => {
     const bookInfo = document.createElement("tr");
     bookInfo.className = "book-info";
     bookCollection.appendChild(bookInfo);
-    const domTitle = document.createElement("td");
-    domTitle.innerText = `${book.title}`;
 
-    const domAuthor = document.createElement("td");
-    domAuthor.innerText = `${book.author}`;
+    const tableTitleCol = document.createElement("td");
+    tableTitleCol.innerText = `${book.title}`;
 
-    const domPages = document.createElement("td");
-    domPages.innerText = `${book.pages}`;
+    const tableAuthorCol = document.createElement("td");
+    tableAuthorCol.innerText = `${book.author}`;
 
-    const domStatus = document.createElement("td");
+    const tablePageCol = document.createElement("td");
+    tablePageCol.innerText = `${book.pages}`;
+
+    const toggleBookStatusBtn = document.createElement("td");
     if (book.isRead == true) {
-      domStatus.className = "toggle fas fa-check";
+      toggleBookStatusBtn.className = "toggle fas fa-check";
     } else {
-      domStatus.className = "toggle fas fa-times";
+      toggleBookStatusBtn.className = "toggle fas fa-times";
     }
 
-    const domRemove = document.createElement("td");
-    domRemove.className = "far fa-trash-alt";
+    const tableRemoveBookBtn = document.createElement("td");
+    tableRemoveBookBtn.className = "far fa-trash-alt";
 
-    bookInfo.append(domRemove, domTitle, domAuthor, domPages, domStatus);
+    bookInfo.append(
+      tableRemoveBookBtn,
+      tableTitleCol,
+      tableAuthorCol,
+      tablePageCol,
+      toggleBookStatusBtn
+    );
   });
 };

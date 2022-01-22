@@ -12,9 +12,49 @@
     <title>Library</title>
   </head>
   <body>
-    <button class="add-book">Add book</button>
-    <div class="new-book"></div>
-    <form class="wrapper hidden">
+    <div class="navbar">
+      <div class="logo">
+        <span><i class="fas fa-book"></i></span>
+        <h1>Library</h1>
+      </div>
+      <p>About Us</p>
+    </div>
+
+    <section class="flex">
+      <div class="description">
+        <p>
+          This is the book library project from The Odin Project
+          curriculum.basically in this project we've had to take user input
+          (book title,author, nr of pages) and render this on the webpage.
+        </p>
+        <p>
+          Challenging stuff for a beginner to do no doubt, but if you manage to
+          get trough all the new concepts and finish the assingment, it is very
+          rewarding.
+        </p>
+        <p>
+          So now let's just go with it and put some books on this baby. To do
+          that just press the ''Add book'' button from below.
+        </p>
+        <button class="add-book">Add book</button>
+      </div>
+      <div class="book-collection scrollit">
+        <table>
+          <thead class="headers">
+            <tr>
+              <th class="delete">Remove</th>
+              <th class="title">Book-Title</th>
+              <th class="author">Author</th>
+              <th class="pages">Pages</th>
+              <th class="is-done">Status</th>
+            </tr>
+          </thead>
+          <tbody class="table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <form class="form-wrapper">
       <h2 class="title-card">Add a new book!</h2>
       <input
         class="field"
@@ -50,20 +90,6 @@
       </div>
       <input type="submit" value="Submit" />
     </form>
-    <div class="book-collection scrollit">
-      <table>
-        <thead class="headers">
-          <tr>
-            <th class="delete">Remove</th>
-            <th class="title">Book-Title</th>
-            <th class="author">Author</th>
-            <th class="pages">Pages</th>
-            <th class="is-done">Status</th>
-          </tr>
-        </thead>
-        <tbody class="table-body"></tbody>
-      </table>
-    </div>
 
     <script src="index.js"></script>
   </body>
