@@ -1,12 +1,6 @@
 "use strict";
 
-let library = [
-  { title: "AnalyserNo", author: "ggs", pages: 25, isRead: false },
-  { title: "AnaalyserNo", author: "ggs", pages: 25, isRead: false },
-  { title: "Analyso", author: "ggs", pages: 25, isRead: false },
-];
-
-//let library = [];
+let library = [];
 
 const addBookbtn = document.querySelector(".add-book");
 const form = document.getElementsByClassName("form-wrapper")[0];
@@ -73,7 +67,10 @@ const takeAction = (book, bolean) => {
 };
 
 const checkIfBookInLibrary = (book) => {
+  console.log(library.length);
   if (library.length < 1) return false;
+  console.log(book);
+
   for (let index = 0; index < library.length; index++) {
     const element = library[index].title;
     if (book.title == element) {
